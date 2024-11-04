@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.dangabito.projectjpa.dao.DisqueraDAO;
 import com.dangabito.projectjpa.entity.Disquera;
+import com.mysql.cj.Query;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -101,6 +102,24 @@ public class DisqueraDaoImpl implements DisqueraDAO {
 			throw new EntityNotFoundException("La disquera con id "+ id + "no se encontro");
 		}
 		return disquera;
+	}
+
+	@Override
+	public Disquera consultarByDescripcionJPQL(String descripcion) {
+		EntityManager eManager=ENTITY_MANAGER_FACTORY.createEntityManager();
+		TypedQuery<Disquera> queryDisqueraQuery= (TypedQuery<Disquera>) eManager.
+				createQuery("FROM Disquera WHERE descripcion =:descripcion");
+		queryDisqueraQuery.setParameter("descripcion", descripcion);
+		return queryDisqueraQuery.getSingleResult();
+	}
+
+	@Override
+	public Disquera consultarByDescripcionNative(String descripcion) {
+		EntityManager eManager=ENTITY_MANAGER_FACTORY.createEntityManager();
+		TypedQuery<Disquera> queryDisqueraQuery= (TypedQuery<Disquera>) eManager.
+				createNativeQuery("SELECT * FROM disquera WHERE descripcion =:descripcion",Disquera.class);
+		queryDisqueraQuery.setParameter("descripcion", descripcion);
+		return queryDisqueraQuery.getSingleResult();
 	}
 
 }

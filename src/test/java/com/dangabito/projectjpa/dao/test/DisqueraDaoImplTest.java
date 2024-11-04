@@ -90,5 +90,18 @@ class DisqueraDaoImplTest {
 		Disquera disquera = this.disqueraDAO.consultarById(9L);
 		System.out.println("Disquera :" + disquera.getDescripcion());
 	}
-
+	
+	@Test
+	void testConsultarByDescripcionJPQL() {
+		Disquera disquera=this.disqueraDAO.consultarByDescripcionJPQL("Fox");
+		assertNotNull(disquera);
+		System.out.println("Disquera by descripcion:"+ disquera.getDescripcion());
+	}
+	
+	@Test
+	void testConsultarByDescripcionNativeSQL() {
+		Disquera disquera=this.disqueraDAO.consultarByDescripcionNative("Sony");
+		assertNotNull(disquera);
+		System.out.println("Disquera by descripcion:"+ disquera.getDescripcion());
+	}
 }

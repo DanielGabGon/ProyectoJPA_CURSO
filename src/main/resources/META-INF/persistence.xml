@@ -9,8 +9,10 @@
         </description>
         <!--Define la clase para Hibernate que Implementa JPA.-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!-- Define la clase que seran mappeadas al configurarse la conexion a la base de datos -->
         <class>com.dangabito.projectjpa.entity.Disquera</class>
+        <class>com.dangabito.projectjpa.entity.Genero</class>
+        <class>com.dangabito.projectjpa.entity.SubGenero</class>
+        <!-- Define la clase que seran mappeadas al configurarse la conexion a la base de datos -->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tienda_musical?serverTimezone=America/Mexico_City" />
